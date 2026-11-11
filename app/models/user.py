@@ -1,0 +1,19 @@
+from sqlalchemy import Column,Integer,String,Boolean
+from sqlalchemy.orm import relationship
+
+from app.db.base_class import Base
+
+class User(Base):
+    __tablename__ = "user"
+    
+    id = Column(Integer,primary_key=True,index=True)
+    first_name = Column(String(256),nullable=True)
+    surname = Column(String(256),nullable=True)
+    email = Column(String(256),index=True,nullable=False)
+    is_superuser = Column(Boolean,nullable=False)
+    recipes = relationship(
+        "Recipe",
+        cascade="all,delete-orphan",
+        back_populates="submitter",
+        uselist=True
+    )

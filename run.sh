@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export APP_MODULE="${APP_MODULE:-app.main:app}"
+export HOST="${HOST:-127.0.0.1}"
+export PORT="${PORT:-8001}"
+
+exec uvicorn "$APP_MODULE" --reload --host "$HOST" --port "$PORT"
